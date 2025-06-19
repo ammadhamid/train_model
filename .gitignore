@@ -151,4 +151,7 @@ static/
 docker-compose.override.yml
 
 # Ignore requirements lock files
-requirements*.txt.lock 
+requirements*.txt.lock
+
+# Config file
+config.py 
