@@ -1,0 +1,72 @@
+Tech Stack & Libraries Used
+
+Framework: FastAPI (used for building async REST APIs)
+Model/ML: PyTorch, Transformers (BioBERT/PubMedBERT)
+Data Science: scikit-learn, numpy, pandas
+NLP: nltk, spaCy
+Caching: Redis (using redis-py)
+Security: JWT with PyJWT, API Key authentication, SlowAPI for rate limiting, bleach for input sanitization
+Other Tools: python-dotenv for environment variables, gunicorn for production server, requests for making HTTP requests
+
+Key Features
+Modular, production-ready backend for a medical symptom checker or chatbot
+Secure endpoints using API Key or JWT
+Async, high-performance API routes
+Caching implemented using both in-memory and Redis
+Built-in rate limiting and CORS handling
+Sanitization of inputs and outputs
+Optional Docker support for containerized deployment
+
+Endpoints to Test
+1. Analyze Symptom
+Method: POST
+Route: /api/analyze-symptom
+Headers:
+X-API-KEY: your_api_key (found in config.py)
+Body:
+Symptom: "chest pain"
+Session ID: "abc123" (optional)
+
+2. Chat
+Method: POST
+Route: /api/chat
+Headers:
+X-API-KEY: your_api_key
+Body:
+Message: "I have a headache"
+Session ID: "abc123"
+Conversation history: [] (optional)
+
+3. Batch Analyze
+Method: POST
+Route: /api/batch-analyze
+Headers:
+X-API-KEY: your_api_key
+Body:
+A list of symptoms, like: ["chest pain", "headache"]
+
+4. Health Check
+Method: GET
+Route: /health
+Headers: None required (API Key optional)
+Body: Not needed
+How to Test
+Use Postman or any API client
+Add the X-API-KEY header with the key from your config or .env (default is change-this-api-key)
+Use the sample JSON body formats shown above
+Check for valid responses and proper error handling
+
+What to Check
+Each endpoint should respond as expected with no server crashes
+Auth should work: API key or JWT must be present, or request gets rejected
+Rate limiting should activate if too many requests are sent too quickly
+Input/output should be sanitized (try inserting HTML or JS to test)
+CORS should only allow requests from whitelisted domains
+Caching should function correctly if Redis is active
+Logs should show up in your terminal or log files
+
+Note
+No user registration or login system yet — only API key or JWT-based access
+The AI model only supports English; translation would need to be handled outside the API
+
+

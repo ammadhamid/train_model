@@ -1,0 +1,197 @@
+{
+  "start": "q1",
+  "questions": {
+    "q1": {
+      "text": "How long have you had chest pain?",
+      "type": "duration",
+      "options": ["<1 hour", "1-24 hours", ">24 hours"],
+      "next": {
+        "<1 hour": "q2",
+        "1-24 hours": "q2",
+        ">24 hours": "q3"
+      }
+    },
+    "q2": {
+      "text": "Is the pain sharp, dull, or pressure-like?",
+      "type": "quality",
+      "options": ["sharp", "dull", "pressure-like"],
+      "next": {
+        "sharp": "q4",
+        "dull": "q5",
+        "pressure-like": "q6"
+      }
+    },
+    "q3": {
+      "text": "Is the pain constant or does it come and go?",
+      "type": "pattern",
+      "options": ["constant", "comes and goes"],
+      "next": {
+        "constant": "q7",
+        "comes and goes": "q8"
+      }
+    },
+    "q4": {
+      "text": "Do you have shortness of breath or sweating?",
+      "type": "associated_symptoms",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "q9",
+        "no": "q10"
+      }
+    },
+    "q5": {
+      "text": "Do you have a history of heart disease?",
+      "type": "history",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "q11",
+        "no": "q12"
+      }
+    },
+    "q6": {
+      "text": "Does the pain radiate to your arm, jaw, or back?",
+      "type": "radiation",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "q13",
+        "no": "q14"
+      }
+    },
+    "q7": {
+      "text": "Do you have fever or cough?",
+      "type": "infection",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "q15",
+        "no": "q16"
+      }
+    },
+    "q8": {
+      "text": "Is the pain related to physical activity?",
+      "type": "activity",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "q17",
+        "no": "q18"
+      }
+    },
+    "q9": {
+      "text": "Do you feel faint or dizzy?",
+      "type": "red_flag",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q10": {
+      "text": "Do you have chest pain when breathing deeply?",
+      "type": "pleuritic",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q11": {
+      "text": "Do you take any heart medications?",
+      "type": "medications",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q12": {
+      "text": "Do you have high blood pressure or diabetes?",
+      "type": "risk_factors",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q13": {
+      "text": "Do you have nausea or vomiting?",
+      "type": "associated_gi",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q14": {
+      "text": "Is the pain worse with movement or touch?",
+      "type": "musculoskeletal",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q15": {
+      "text": "Do you have chills or night sweats?",
+      "type": "systemic",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q16": {
+      "text": "Do you have swelling in your legs?",
+      "type": "edema",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q17": {
+      "text": "Does the pain improve with rest?",
+      "type": "angina",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    },
+    "q18": {
+      "text": "Is the pain related to eating or acid reflux?",
+      "type": "gi",
+      "options": ["yes", "no"],
+      "next": {
+        "yes": "end",
+        "no": "end"
+      }
+    }
+  },
+  "diagnoses": [
+    {
+      "name": "Acute Coronary Syndrome (Heart Attack)",
+      "criteria": ["duration:<1 hour", "quality:pressure-like", "associated_symptoms:yes", "red_flag:yes"],
+      "red_flags": ["shortness of breath", "sweating", "faint", "dizzy"],
+      "urgency": "emergency"
+    },
+    {
+      "name": "Stable Angina",
+      "criteria": ["activity:yes", "angina:yes", "history:yes"],
+      "urgency": "high"
+    },
+    {
+      "name": "Musculoskeletal Pain",
+      "criteria": ["musculoskeletal:yes", "quality:sharp", "pattern:comes and goes"],
+      "urgency": "low"
+    },
+    {
+      "name": "Gastroesophageal Reflux Disease (GERD)",
+      "criteria": ["gi:yes", "pattern:comes and goes"],
+      "urgency": "low"
+    },
+    {
+      "name": "Pneumonia",
+      "criteria": ["infection:yes", "systemic:yes"],
+      "urgency": "medium"
+    }
+  ]
+} 
